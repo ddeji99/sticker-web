@@ -412,7 +412,7 @@ function Home() {
 
      <LookOrItem>
       <Look>Look</Look>
-      <Itemonly> <a href="https://www.info.sticker.ooo/items" target="_blank" >Item</a></Itemonly>
+      <Itemonly> <a href="https://www.second.sticker.ooo/items" target="_blank" >Item</a></Itemonly>
      </LookOrItem>
 
 

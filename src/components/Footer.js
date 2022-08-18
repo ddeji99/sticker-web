@@ -112,9 +112,9 @@ const FooterLogo = styled.img`
                 
                 <span>COPYRIGHT (C) STICKERS.inc ALL RIGHTS RESERVED.</span><br></br>
                 
-                <span>&nbsp;<a href="https://www.info.sticker.ooo/privacy"
+                <span>&nbsp;<a href="https://www.second.sticker.ooo/privacy"
                             target="_blank">개인정보처리방침</a>&nbsp;&nbsp;</span>
-                <span>&nbsp;&nbsp;<a href="https://www.info.sticker.ooo/terms-of-use"
+                <span>&nbsp;&nbsp;<a href="https://www.second.sticker.ooo/terms-of-use"
                                       target="_blank">​서비스 이용약관</a>&nbsp;</span>
             </Footer4>
            </Footerspace>

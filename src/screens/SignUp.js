@@ -570,7 +570,7 @@ function SignUp() {
                                   <CSlider></CSlider>
                               </CheckBoxR>
                             
-                              <a style={{"text-decoration": "underline"}} href="https://www.info.sticker.ooo/terms-of-use"
+                              <a style={{"text-decoration": "underline"}} href="https://www.second.sticker.ooo/terms-of-use"
                                       target="_blank">(필수)이용약관 동의</a>
                             </SignUPPolicy>
 
@@ -587,7 +587,7 @@ function SignUp() {
                                       hasError={Boolean(errors?.checkbox2?.message)}/>
                                   <CSlider></CSlider>
                               </CheckBoxR>
-                            <a style={{"text-decoration": "underline"}} href="https://www.info.sticker.ooo/privacy"
+                            <a style={{"text-decoration": "underline"}} href="https://www.second.sticker.ooo/privacy"
                             target="_blank">(필수)개인정보 수집및 동의</a>
                             </SignUPPolicy>
 
