@@ -879,7 +879,7 @@ function Fitting() {
                                          <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
                                          <Zoomimg image={item?.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
-                                         <Info>{item.category}<br/>{item.price}<br/>{item.brand} </Info>
+                                         <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
                                          </InfoWrapper>
                                     </div> 
                                  )}                   
@@ -911,7 +911,7 @@ function Fitting() {
                                          <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
-                                         <Info>{item.category}<br/>{item.price}<br/>{item.brand} </Info>
+                                         <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
                                          </InfoWrapper>
                                     </div> 
                                 )}                   
@@ -944,7 +944,7 @@ function Fitting() {
                                          <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
-                                         <Info>{item.category}<br/>{item.price}<br/>{item.brand} </Info>
+                                         <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
                                          </InfoWrapper>
                                     </div> 
                                  )}                   
@@ -976,7 +976,7 @@ function Fitting() {
                                          <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
-                                         <Info>{item.category}<br/>{item.price}<br/>{item.brand} </Info>
+                                         <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
                                          </InfoWrapper>
                                     </div> 
                                  )}                   
