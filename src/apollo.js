@@ -26,11 +26,11 @@ const wear_Outer= "wear-outer";
 const VSCARD = "VSCARD";
 
 
-const httpLink = new HttpLink({ uri: 'http://localhost:8000/graphql', /*redentials: 'omit',*/ credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"
+const httpLink = new HttpLink({ uri: "https://sticker--backend.herokuapp.com/graphql", /*redentials: 'omit',*/ credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"
 });
 
 const uploadHttpLink = createUploadLink({
-  uri:'http://localhost:8000/graphql', /*credentials: 'omit',*/credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"'include'
+  uri:"https://sticker--backend.herokuapp.com/graphql", /*credentials: 'omit',*/credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"'include'
   headers: {
     //'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
@@ -71,7 +71,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const uploadHttpLinks = authLink.concat(errorLink).concat(uploadHttpLink);
 
 const wsLink = new GraphQLWsLink(createClient({
-  uri:"ws://localhost:8000/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
+  uri:"ws://sticker--backend.herokuapp.com/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
   options: {
     reconnect: true,
     connectionParams: () => ({
