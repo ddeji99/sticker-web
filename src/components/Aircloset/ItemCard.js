@@ -126,7 +126,7 @@ const AnotherUserProfile = styled.div`
 
 const AnotherUserText1 = styled.div`
     width: 260px;
-    font-size: 0.8em;
+    font-size: 14px;
     font-weight: 100;
     display: block;
     overflow: hidden;
@@ -171,7 +171,10 @@ const TotalPrice = styled.span`
 
 `;
 
-const QWE =styled.div``;
+const QWE =styled.div`
+font-size: 16px;
+font-weight: 500;
+`;
 
 
 
