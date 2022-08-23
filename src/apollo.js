@@ -32,7 +32,7 @@ const httpLink = new HttpLink({ uri: "https://sticker--backend.herokuapp.com/gra
 const uploadHttpLink = createUploadLink({
   uri:"https://sticker--backend.herokuapp.com/graphql", /*credentials: 'omit',*/credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"'include'
   headers: {
-    'Access-Control-Allow-Origin': "http://localhost:3000",
+    //'Access-Control-Allow-Origin': "https://stickerdata.s3.ap-northeast-2.amazonaws.com",
       'Access-Control-Allow-Credentials': true,
   }
 });
