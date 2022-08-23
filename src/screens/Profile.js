@@ -14,6 +14,7 @@ import avatar2 from "../img/femaleavatar.png";
 import defaultavatar from "../img/profile_logo.png"
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 
 
 
@@ -103,7 +104,6 @@ letter-spacing: 15px;
 
 const Lookcontainer = styled.div`
 width:100%;
-height: 500px;
 // border: 1px solid;
 display: -webkit-box;
 flex-wrap: wrap;
@@ -120,7 +120,6 @@ flex-wrap: wrap;
 
 const Feedcontainer = styled.div`
 width:100%;
-height: 500px;
 // border: 1px solid;
 display: flex;
 flex-direction: column;
@@ -137,13 +136,14 @@ function Profile() {
     const loggedInUser = useLoggedInUser();
     const { nickname } = useParams();
     const navigate = useNavigate();
-   const { data: seeProfiledata, loading: seeProfileloading } = useQuery(SEEPROFILE_QUERY,{ variables: { nickname: nickname }});
+   const { data: seeProfiledata, loading } = useQuery(SEEPROFILE_QUERY,{ variables: { nickname: nickname }});
    const [seeProfilelazyquery] = useLazyQuery(SEEPROFILE_QUERY);
    useEffect(() => {
     if (nickname == undefined) {
       navigate("/");
     }
   });
+  if(loading) return <Loader />
 
     return (
       <>

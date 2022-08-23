@@ -741,7 +741,11 @@ const [buyrequestMutation, { loading }] = useMutation(BUYREQUEST_MUTATION, {
 
                     <h1>배송비 
                     <DPrice type="text" readOnly value="2,500 원" />
-                    <p>( 무료배송 이벤트는 구매신청 이후 결제단계에서 안내해드릴게요😀 )</p>
+                    <p>( 배송비는 결제단계에서 안내해드릴게요 )<br/> 
+                        
+                    <a href='https://www.second.sticker.ooo/faq' target="_blank">-취소/환불규정 </a>
+                    <a href='https://www.second.sticker.ooo/privacy-policy' target="_blank"> -제3자정보제공</a><br/> 
+                    </p>
                     </h1>
 
                     <FPriceInfo>결제금액 

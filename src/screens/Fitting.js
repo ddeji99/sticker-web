@@ -21,6 +21,9 @@ import { Link, useNavigate, NavigateFunction } from "react-router-dom";
 import { MAKINGLOOK_MUTATION } from "../Documents/Mutation/MAKINGLOOK_MUTATION.";
 import html2canvas from "html2canvas";
 import Header from "../components/Header";
+import useLoggedInUser from "../hooks/useLoggedInUser";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /////predeclare
 const bounce = keyframes`
@@ -184,7 +187,7 @@ transform: translateY(1rem);
 transition: 150ms cubic-bezier(0.4,0,0.2,1);
 ${TitleInput}:focus ~ & {
   transform: translateY(-25%) scale(0.9);
-  background-color: #fff;
+  background-color: #fafafa;
   padding: 0 .2em;
   color: #2196f3;
 }
@@ -234,26 +237,118 @@ color: #1d89ff;
 font-weight: 400;
 font-family: inherit;
 z-index: 0;
-overflow: hidden;
 transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
 
-&:hover {
-  animation: ${rotate624} 0.7s ease-in-out both;
- }
-&:active {
-box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
-transform: translateY(0em);
-}
 `;
+
+// 저장버튼업데이트//
 const SAVEspan = styled.span`
-color: #164ca7;
-font-size: 64px;
-font-weight: 500;
-letter-spacing: 30px;
-${SaveButton}:hover & {
-  animation: ${storm1261} 0.7s ease-in-out both;
-  animation-delay: 0.06s;
- }
+.button {
+ --width: 96.5vh;
+ --height: 9vh;
+ --tooltip-height: 35px;
+ --tooltip-width: 290px;
+ --gap-between-tooltip-to-button: calc(var(--tooltip-height) + 3px);
+ --button-color: #1163ff;
+ --tooltip-color: #666;
+ width: var(--width);
+ height: var(--height);
+ background: var(--button-color);
+ position: relative;
+ text-align: center;
+ border-radius: 1em;
+ transition: background 0.3s;
+}
+
+.button::before {
+ position: absolute;
+ content: attr(data-tooltip);
+ width: var(--tooltip-width);
+ height: var(--tooltip-height);
+ background-color: var(--tooltip-color);
+ font-size: 0.9rem;
+ color: #fff;
+ border-radius: .25em;
+ line-height: var(--tooltip-height);
+ bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+ left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.button::after {
+ position: absolute;
+ content: '';
+ width: 0;
+ height: 0;
+ border: 10px solid transparent;
+ border-top-color: var(--tooltip-color);
+ left: calc(50% - 10px);
+ bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.button::after,.button::before {
+ opacity: 0;
+ visibility: hidden;
+ transition: all 0.5s;
+}
+
+.text {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 40px;
+ letter-spacing: 10px;
+}
+
+.button-wrapper,.text,.icon {
+ overflow: hidden;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ left: 0;
+ color: #fff;
+}
+
+.text {
+ top: 0
+}
+
+.text,.icon {
+ transition: top 0.5s;
+}
+
+.icon {
+ color: #fff;
+ top: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.button:hover {
+ background: #6c18ff;
+}
+
+.button:hover .text {
+ top: -100%;
+}
+
+.button:hover .icon {
+ top: 0;
+}
+
+.button:hover:before,.button:hover:after {
+ opacity: 1;
+ visibility: visible;
+}
+
+.button:hover:after {
+ bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.button:hover:before {
+ bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
 `;
 
 //////----최현섭작품----/width: 38vh;height: 85vh;/추가/////
@@ -287,7 +382,7 @@ box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
             rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
 &:hover {
-    transform: translateY(90px) scale(1.7);
+    transform: translateY(40px) scale(1.3);
     transition: transform 0.9s cubic-bezier(.68,0,0,1.38);
     z-index: 100;
 }
@@ -410,12 +505,16 @@ ${CardWrapper}:hover & {
   }
 `;
 const GrapMark = styled.div`
+font-size: 12px;
+padding-top: 10px;
+color: #fff;
 ${CardWrapper}:hover & {
   height: 27px;
   margin-left: auto;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
   background-image: url(${Mark});
   background-size: 15px;
+  color: #444;
 }
 
 `;
@@ -542,6 +641,7 @@ function Fitting() {
     }
     return new Blob([u8arr], {type:mime});
 }
+    const LoggedInUser = useLoggedInUser();
     const ShowTop = useReactiveVar(ShowTopVar);
     const ShowBottom = useReactiveVar(ShowBottomVar);
     const ShowOuter = useReactiveVar(ShowOuterVar);
@@ -555,7 +655,7 @@ function Fitting() {
                         navigate(window.location.reload(),  alert(errors?.makingLookResult?.message))  );             
             }
             if(ok === true) {
-            navigate("/", alert("룩저장완료"));
+            navigate(`/profile/${LoggedInUser.nickname}`, alert("룩저장완료"));
             }
             if(loading) {
               return <Loader />
@@ -563,11 +663,11 @@ function Fitting() {
         
     }
     const [ makingLook, ] = useMutation(MAKINGLOOK_MUTATION,{
-        context: {
+      /*  context: {
             headers: {
               'apollo-require-preflight': true,
             },
-          },
+          },*/
         onCompleted,    
     });
     let Topitem = {price:"0",image:a};
@@ -712,6 +812,15 @@ function Fitting() {
       if(loading) return <Loader />
 
       const onValid = () => {
+        toast('🦄 저장중입니다 기다려 주세요!', {
+          position: "top-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         let img = null;
         const Border =document.getElementById("cap");
         const a = document.getElementById("a");
@@ -876,7 +985,7 @@ function Fitting() {
                                        ref={provided.innerRef}
                                        {...provided.draggableProps}
                                        >
-                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
+                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark>이곳을 잡아 드래그 해주세요</GrapMark></Grap>
                                          <Zoomimg image={item?.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
                                          <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
@@ -991,6 +1100,7 @@ function Fitting() {
                 </Wr>
               )}
               <br />
+              <ToastContainer />
               
               <Submitbox>
                 <form id="asd" name="asd" onSubmit={handleSubmit(onValid)}>
@@ -1014,7 +1124,18 @@ function Fitting() {
                 <input  {...register("Topid")} name="Topid" type="hidden" value={boxState?.Lookitems.Topitem.id || ""} required />
                 <input  {...register("Btmid")} name="Btmid" type="hidden" value={boxState?.Lookitems.Bottomitem.id || ""} required />
                 <input  {...register("Outerid")} name="Outerid" type="hidden" value={boxState?.Lookitems.Outeritem.id || "" } required /> 
-                <SaveButton type="submit" value="SAVE"><SAVEspan>저장하기</SAVEspan></SaveButton>
+                <SaveButton type="submit" value="SAVE">
+                  <SAVEspan>
+                  <div className="button" data-tooltip="클릭후 10초만 기다려 주세요">
+                    <div className="button-wrapper">
+                      <div className="text">저장하기</div>
+                        <span className="icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+                        </span>
+                      </div>
+                    </div>
+                  </SAVEspan>
+                </SaveButton>
                 </form>
               </Submitbox>
               </RightBoardWr>

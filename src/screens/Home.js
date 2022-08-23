@@ -21,6 +21,7 @@ import defaultavatar from "../img/profile_logo.png"
 import slook from "../img/samplelook.png"
 import { SEERECOMMENDLOOK_QUERY } from "../Documents/Query/SEERECOMMENDLOOK_QUERY";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 
 
 
@@ -51,24 +52,119 @@ const LookOrItem = styled.div`
       font-weight: 900;
     }
 `;
-const Look = styled.div`
-    margin-right: 10vw;
-    cursor: pointer;
-    &:hover{
-      text-decoration: underline;
-      color: #1875FF;
-    }
-    @media (pointer:coarse) {
-      margin-right: 18vw;
-    }
+
+const Learnmore = styled.button`
+position: relative;
+display: inline-block;
+cursor: pointer;
+outline: none;
+border: 0;
+vertical-align: middle;
+text-decoration: none;
+background: transparent;
+padding: 0;
+font-size: 30px;
+font-family: inherit;
+width: 450px;
+height: 60px;
+
+border: none;
+&:hover{
+    border-top-color: #1300ff;
+}
+
+@media (pointer:coarse) {
+    width: 300px;
+    height: 85px;
+}
 `;
-const Itemonly = styled.div`
-    margin-right: 10vw;
-    cursor: pointer;
-    &:hover{
-      text-decoration: underline;
-      color: #1875FF;
+
+const Circle = styled.span`
+transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
+position: relative;
+display: block;
+margin: 0;
+width: 60px;
+height: 60px;
+background: #282936;
+border-radius: 500px;
+${Learnmore}:hover &{
+        width: 100%;
+        background: #1875ff;
+}
+@media (pointer:coarse) {
+    width: 85px;
+    height: 85px;
+    width: 100%;
+    background: #1875ff;
+}
+`;
+
+const Arrow = styled.span`
+transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
+position: absolute;
+top: 0;
+bottom: 0;
+margin: auto;
+background: #fff;
+left: 0.66rem;
+width: 1.125rem;
+height: 0.125rem;
+background: none;
+${Learnmore}:hover &{
+    background: #fff;
+    transform: translate(1rem, 0);
+}
+&::before {
+    position: absolute;
+    content: "";
+    top: -0.30rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+   }
+`;
+
+const ButtonText = styled.span`
+transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+color: #282936;
+font-weight: 700;
+text-align: center;
+text-transform: uppercase;
+${Learnmore}:hover &{
+    color: #fff;
+}
+span{
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: -20px;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+@media (pointer:coarse) {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 9px;
+    word-break: keep-all;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    span{
+      display none;
     }
+}
 `;
 
 const CFD = keyframes`     
@@ -313,7 +409,7 @@ function Home() {
  const navigate = useNavigate();
  const Detailpathmatch = useMatch("/feed/:id");
  const lookmatch = useMatch("/lookdetail");
- const { data: seeFeedData, fetchMore } = useQuery(SEEFEEDS_QUERY);
+ const { data: seeFeedData, fetchMore, loading } = useQuery(SEEFEEDS_QUERY);
  const { data: seerecommendlookdata } = useQuery(SEERECOMMENDLOOK_QUERY);
  var settings = {
   infinite: true,
@@ -370,6 +466,8 @@ function Home() {
     document.body.style.overflow = "auto";
   }, []);
 
+  if(loading) return <Loader />
+
   return (
     <>
     
@@ -411,8 +509,18 @@ function Home() {
      </TopNav>
 
      <LookOrItem>
-      <Look>Look</Look>
-      <Itemonly> <a href="https://www.second.sticker.ooo/items" target="_blank" >Item</a></Itemonly>
+      <Learnmore>
+          <a href="https://www.second.sticker.ooo/items"
+              target="_blank">
+          <Circle>
+              <Arrow></Arrow>
+          </Circle>
+          <ButtonText>                                
+              뭘 입혀볼지 모르겠다면?<br></br>
+              <span>아이템만 따로 모아보세요!</span>
+          </ButtonText>
+          </a>
+      </Learnmore> 
      </LookOrItem>
 
 

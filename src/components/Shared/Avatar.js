@@ -10,6 +10,11 @@ const Image = styled.img`
   border: 1px solid #DBDBDB;
   border-radius: 50%;
   margin: 0 5px 0 0;
+  @media (pointer:coarse) {
+   width: 5vh;
+   height: 5vh;
+  }
+  
 `;
 
 const Avatar = ({ size, Avatarurl }) => {

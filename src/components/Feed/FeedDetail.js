@@ -84,7 +84,7 @@ left:0;
 right:0;
 margin-left:auto;
 margin-right:auto;
-overflow:hidden;
+
 @media screen and (max-width: 1000px) {
     width: 95vw;
     height: 90vh;
@@ -96,15 +96,16 @@ overflow:hidden;
 }
 `;
 
-const LookBox = styled.div`
-height: calc(50vw - 19vw);
-min-height: 550px;
-box-shadow: 5px 5px 10px #d9d9d9;
-border-radius: 27px;
-@media screen and (max-width: 1000px) {
-    width: 40vw;
-    height: fit-content;
-}
+const LookBox = styled(motion.div)`
+    height: calc(50vw - 19vw);
+    min-height: 550px;
+    box-shadow: 5px 5px 10px #d9d9d9;
+    border-radius: 30px;
+    cursor: pointer;
+    @media screen and (max-width: 1000px) {
+        width: 40vw;
+        height: fit-content;
+    }
 `;
 
 const InfoBox = styled.div`
@@ -146,18 +147,14 @@ border-right-width: 1px;
 `;
 
 const Lookimg = styled.img`
-cursor: pointer;
-height: 100%;
-overflow: hidden;
-border-radius: 27px;
-margin-left:auto;
-margin-right:auto;
-@media screen and (max-width: 1000px) {
-    width:100%;
-    height: auto !important;
-}
+    height: 100%;
+    overflow: hidden;
+    border-radius: 27px;
+    @media screen and (max-width: 1000px) {
+        width:100%;
+        height: auto !important;
+    }
 `;
-
 
 const MyProfile = styled.div`
 font-weight: bold;
@@ -537,7 +534,7 @@ background-color: transparent;
 
 
 function FeedDetail({ id, useravatar, usernickname, lookimg, lookitems, title, caption, createdAt, lookid  }) {
-    const [ isopen, setisopen ] = useState(lookitems[0]);
+    const [ isopen, setisopen ] = useState();
     const loggedInUser = useLoggedInUser();
     const navigate = useNavigate();
     const { data: seeCommentdata } = useQuery(SEECOMMENT_QUERY, { variables: { feedid: id } });
@@ -647,7 +644,7 @@ function FeedDetail({ id, useravatar, usernickname, lookimg, lookitems, title, c
            
           <DetailFeedBox variants={modalVariants} initial="start" animate="end" exit="exit">
 
-            <LookBox>
+            <LookBox whileHover={{scale: 1.3}}>
                 <Lookimg onClick={() => lookdetail(lookid,usernickname)} src={lookimg} />
             </LookBox>
 

@@ -88,7 +88,7 @@ const Title = styled.h1`
 const Loader = () => (
   <Container>
         <LoadingContainer role="img" aria-label="Loading">
-          <div class="spinner">
+          <div className="spinner">
             <div></div>
             <div></div>
             <div></div>

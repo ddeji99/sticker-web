@@ -19,15 +19,10 @@ const Aasd = styled.div`
 const Zoomimg = ({image}) => {
     return (
         <ABC style={{display: "flex", justifyContent: "center"}}>
-          <TransformWrapper
-            minScale={0.5}      
-            limitToBounds={false}
-            style={{overflow: "visible !important"}}
-            >
-            <TransformComponent>
+          
+            
               <SM src={image} alt="" crossOrigin="use-credentials" />
-            </TransformComponent>
-          </TransformWrapper>
+          
         </ABC>
     )
 }
