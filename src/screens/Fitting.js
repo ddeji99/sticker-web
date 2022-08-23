@@ -1017,7 +1017,7 @@ function Fitting() {
                                        ref={provided.innerRef}
                                        {...provided.draggableProps}                      
                                     >
-                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
+                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark>이곳을 잡아 드래그 해주세요</GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
                                          <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
@@ -1050,7 +1050,7 @@ function Fitting() {
                                        ref={provided.innerRef}
                                        {...provided.draggableProps}                      
                                     >
-                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
+                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark>이곳을 잡아 드래그 해주세요</GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
                                          <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>
@@ -1082,7 +1082,7 @@ function Fitting() {
                                        ref={provided.innerRef}
                                        {...provided.draggableProps}                      
                                     >
-                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark></GrapMark></Grap>
+                                         <Grap style={snapshot.isDragging ? {display: "none"} : null} {...provided.dragHandleProps}><GrapMark>이곳을 잡아 드래그 해주세요</GrapMark></Grap>
                                          <Zoomimg image={item.image}/>
                                          <InfoWrapper isDragging={snapshot.isDragging}  >
                                          <Info>{item.title}<br/>{item.price}<br/>{item.brand} </Info>

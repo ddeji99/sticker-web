@@ -690,10 +690,10 @@ function FeedDetail({ id, useravatar, usernickname, lookimg, lookitems, title, c
                       >
                         <Detailimg src={isopen.image} />
                         <Detailinfo>
-                           <Infotext>{isopen.title}</Infotext>
-                           <Infotext>{isopen.size}</Infotext>
-                           <Infotext>{isopen.color}</Infotext>
-                           <Infotext>{isopen.price}</Infotext>
+                           <Infotext style={{fontWeight: 600}}>{isopen.title}</Infotext>
+                           <Infotext style={{fontWeight: 300, fontSize: "14px"}}>{isopen.size}</Infotext>
+                           <Infotext style={{fontWeight: 300, fontSize: "14px"}}>{isopen.color}</Infotext>
+                           <Infotext style={{fontWeight: 600}}>{isopen.price}</Infotext>
                         </Detailinfo>
                    </DetailBox>
                    )}

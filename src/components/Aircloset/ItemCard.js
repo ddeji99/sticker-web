@@ -135,6 +135,7 @@ const AnotherUserText1 = styled.div`
     
     @media (pointer:coarse){
         width: 400px;
+        font-size: 30px;
     }
 `;
 
@@ -174,6 +175,9 @@ const TotalPrice = styled.span`
 const QWE =styled.div`
 font-size: 16px;
 font-weight: 500;
+@media (pointer:coarse) {
+    font-size: 35px;
+}
 `;
 
 
@@ -242,7 +246,6 @@ function ItemCard ({ lookimg, avatar, nickname, TitleText, ContentText, comments
                 <AnotherUserItems>
                     {lookitems?.map((item) => <AnotherUserItemImg key={item.id} src={item.image} />  )}                    
                 </AnotherUserItems>
-                <TotalPrice>{totalprice}원</TotalPrice>
             </div>
         </ItemCardForm>
         );
