@@ -20,7 +20,11 @@ export const SEERECOMMENDLOOK_QUERY = gql`
             color
             price
             image
+            mimage
+            laundryinfo
             category
+            iscart
+            totalCarts
         }
       }
       

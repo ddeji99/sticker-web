@@ -17,8 +17,8 @@ const SSeparator = styled.div`
     height: 1px;
     background-color: rgb(219, 219, 219);
     }
-    @media (pointer:coarse) {
-    margin: 3vh 0px 3vh 0px;
+  @media screen and (max-width: 1000px) {
+    margin: 10px 0px 10px 0px;
   }
 `;
 
@@ -32,4 +32,3 @@ function Separator() {
 }
 
 export default Separator;
-

@@ -1,124 +1,86 @@
 import styled from "styled-components";
 import { Link, useNavigate, useMatch } from "react-router-dom";
 import LookDetail from "../Feed/LookDetail";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const CardForm = styled.div`
-    width: 180px;
-    height: 400px;
+    width: 220px;
+    height: 474px;
     border-radius: 27px;
     overflow: hidden;
-    margin: 15px;
-    box-shadow: 5px 5px 10px #d9d9d9;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex:none;
-    transition: all 0.3s;
-
-    &:hover {
-        z-index: -2;
-        margin: 15px;
-        transform: scale(1.03) rotate(5deg);
-        border: #1875FF solid 3px;
-        outline-offset: -3px;
-    }
-
-    @media (pointer:coarse){
-        width: calc( 40vh * 0.45 );
-        height: 40vh;
-        box-shadow: 1vw 1vw 3vw #d9d9d9;
-        margin: 15px 8vw 15px 15px;
-        border-radius: 47px;
-        &:hover {
-            margin: 15px 13vw 15px 15px;
-            border: none;
-            transition: all 0.3s;
-            transform: scale(1.05);
-    }
-}
-`;
-
-const CardImg = styled.img`
-    height: 100%;
-`;
-
-const CardDiv = styled.a`
-    width: 168px;
-    height: 40px;
-    margin-top: -47px;
-    border-radius: 215px;
-
-    background: rgba( 255,255,255,0.6 );
-    box-shadow: 2px 2px 5px 0 rgba( 0,0,0, 0.3 );
-    backdrop-filter: blur( 5px );
-    border: 1px solid rgba( 255,255,255, 1 );
-
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
-    transition: all 0.3s;
-    cursor: pointer;
+    position: relative;
 
-    ${CardForm}:hover & {
-    transform: scale(1.04) rotate(-5deg) translateY(-60%);
+    margin: 0 10px 0 10px;
+    box-shadow: 0px 10px 30px 0px rgba(193, 193, 193, 0.25);
+    cursor: pointer;
+    @media all and (max-width:767px) {
+        width: calc(97vw / 2 - 10px);
+        height: 374px;
     }
-    @media (pointer:coarse) {
-        margin-top: -89px;
-        height: 73px;
-        width: calc( 37vh * 0.45 );
-        background: rgba( 255,255,255,0.8 );
-        box-shadow: 2px 2px 5px 0 rgba( 0,0,0, 0.3 );
-        backdrop-filter: blur( 5px );
-        border: 1px solid rgba( 255,255,255, 1 );
-        padding: 3px;
-        border-radius: 45px;
-        ${CardForm}:hover & {
-            transform: none;
-            }
+`;
+
+const CardImg = styled(motion.img)`
+    width: 225px;
+    background-color: #ffffff;
+    overflow: hidden;
+    @media all and (max-width:767px) {
+        width: calc(97vw / 2);
+        object-fit: contain;
+    }
+`;
+
+const CardDiv = styled.div`
+    width: 180px;
+    height: 55px;
+    display: flex;
+    overflow: hidden;
+
+    position: absolute;
+    bottom: 8px;
+    border-radius: 20px;
+    padding: 10px;
+
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    background-color: rgba(48, 48, 48, 0.3);
+    @media all and (max-width:767px) {
+        width: calc(97vw / 2 - 50px);
     }
 `;
 
 const CardText = styled.span`
-    width: 95%;
-    font-size: 20px;
-    font-weight: middle;
-    letter-spacing: 0.1em;
-    display: block;
-    white-space: nowrap;
+    width: 100%;
     overflow: hidden;
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Noto Sans KR", sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: left;
+    overflow: hidden;
+    white-space: normal;
     text-overflow: ellipsis;
-
-    
-    vertical-align: super;
-    
-    vertical-align: middle;
-    @media (pointer:coarse) {
-        margin-left: -30px;
-        font-size: 2em;
-        font-weight: 900;
-        letter-spacing: 0.1em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+    @media all and (max-width:767px) {
+        width: calc(97vw / 2 - 40px);
     }
 `;
 
-const CardIcon = styled.img`
-    display: none;
-
-`;
-
-function LongCard ({ lookimg, title, id, lookitems  }) {
+function LongCard ({ lookimg, title, id, lookitems, totalprice  }) {
     const navigate = useNavigate();
     const detail = (id) => {
         navigate(`look/${id}`);
     }
-        const Detailpathmatch = useMatch("look/:id");
+        
         const Profilepathmatch = useMatch("profile/:nickname/look/:id");
 
 
@@ -129,15 +91,15 @@ function LongCard ({ lookimg, title, id, lookitems  }) {
             <>
               <AnimatePresence>
                {Profilepathmatch && Profilepathmatch.params.id === String(id) && (
-                   <LookDetail id={id} lookimg={lookimg} lookitems={lookitems} title={title} />
-               )}
-                {Detailpathmatch && Detailpathmatch.params.id === String(id) && (
-                   <LookDetail id={id} lookimg={lookimg} lookitems={lookitems} title={title} />
+                   <LookDetail id={id} lookimg={lookimg} lookitems={lookitems} title={title} totalprice={totalprice} />
                )}
                 </AnimatePresence>
-            <CardForm>
-                <CardImg src={lookimg}></CardImg>
-                <CardDiv onClick={() => detail(id)}>
+            <CardForm className="LongCard" onClick={() => detail(id)}>
+                <CardImg src={lookimg}
+                         whileHover={{ scale: 1.05 }}
+                         whileTap={{ scale: 1 }}
+                 />
+                <CardDiv >
                     <CardText>{title}</CardText>
                 </CardDiv>
             </CardForm>

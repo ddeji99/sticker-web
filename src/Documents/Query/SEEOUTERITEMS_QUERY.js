@@ -13,11 +13,15 @@ query seeOuteritems($cursor: Int) {
        title
        price
        image
+       mimage
+       laundryinfo
        color
        size
        brand
        createAt
        updateAt
+       iscart
+       totalCarts
       }
    }
 }

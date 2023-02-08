@@ -18,6 +18,14 @@ import Fitting from "./screens/Fitting";
 import { AnimatePresence } from "framer-motion";
 import Profile from "./screens/Profile"
 import Perchase from "./screens/Perchase";
+import FeedDetail from "./screens/FeedDetail";
+import ItemDetail from "./screens/ItemDetail"
+import ItemMain from "./screens/ItemMain";
+import FeedMain from "./screens/FeedMain";
+import Additem from "./screens/Additem";
+
+
+
 
 
 
@@ -32,15 +40,19 @@ function App() {
     <BrowserRouter>
       <Routes>
       <Route path="profile/:nickname" element={<Profile />} >
-        <Route path="feed/:id" element={<Profile />} />
         <Route path="look/:id" element={<Profile />} />
       </Route>
       <Route path="/perchase/:id" element={<Perchase />} />
       <Route path="/findpassword" element={<Findpassword />} />
       <Route path="/" element={<Home />}>
-        <Route path="feed/:id" element={<Home />} />
+        
         <Route path="look/:id" element={<Home />} />
       </Route>
+      <Route path="add" element={<Additem />} />
+      <Route path="feeds" element={<FeedMain />} />
+      <Route path="items" element={<ItemMain />} />
+      <Route path="feed/:id" element={<FeedDetail />} />
+      <Route path="items/:id" element={<ItemDetail />} />
       <Route path="/fitting" element={<Fitting />}/>
       <Route path="/login" element={<Login />} />
       <Route path={routes.signUp} element={<SignUp />} />

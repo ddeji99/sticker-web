@@ -17,9 +17,8 @@ const Logoinbox = styled.img`
   width: 300px;
   padding: 3vh 0 3vh;
   object-fit: contain;
-  @media (pointer:coarse) {
-    width: 100%;
-    padding: 5vh 0 5vh 0;
+  @media all and (max-width:767px) {
+    width: 70%;
   }
 `;
 
@@ -35,8 +34,9 @@ const SignUp2 = styled.div`
     align-items: center;
   }
   span {
-    @media (pointer:coarse) {
-      font-size: 38px;
+    @media all and (max-width:767px) {
+      font-size: 18px;
+      margin-bottom: 9px;
     }
   }
   button {
@@ -46,7 +46,7 @@ const SignUp2 = styled.div`
   background: #000;
   color: white;
   margin: 0 0.5px 0 0.5px;
-  margin: 0 0.5px 0 0.5px;
+  padding: 0.7em 1em;
   padding-left: 0.9em;
   display: flex;
   align-items: center;
@@ -55,10 +55,11 @@ const SignUp2 = styled.div`
   overflow: hidden;
   transition: all 0.2s;
   text-shadow: 0 1px #666;
-  @media (pointer:coarse) {
-      letter-spacing: 3px;
-      font-size:40px;
-      padding: 10px 0 10px 0;
+    @media all and (max-width:767px) {
+        width: 100%;
+        padding: 10px 0 10px 0;
+        font-size: 12px;
+        padding: 5px;
     }
   }
 
@@ -66,9 +67,9 @@ const SignUp2 = styled.div`
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
-  @media (pointer:coarse) {
+    @media all and (max-width:767px) {
       letter-spacing: 5px;
-      font-size:40px;
+      font-size: 18px;
     }
   }
 
@@ -95,13 +96,8 @@ const SignUp2 = styled.div`
   transform: scale(0.95);
   }
 
-  @keyframes fly-1 {
-  from {
-    transform: translateY(0.1em);
-  }
-
-  to {
-    transform: translateY(-0.1em);
+  @media all and (max-width:767px) {
+    width: calc(100% - 60px);
   }
 `;
 
@@ -116,10 +112,10 @@ const PasswordFineNotion = styled.span`
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 40px;
-  @media (pointer:coarse) {
-    font-size: 40px;
+  @media all and (max-width:767px) {
+    font-size: 18px;
     margin-bottom: 20px;
-    line-height: 80px;
+    line-height: 1.4;
   }
 `;
 
@@ -151,17 +147,17 @@ ${Emailinput}:valid ~ & {
   color: #1875FF;
 }
 
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-78px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Emailinput}:focus ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Emailinput}:valid ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;

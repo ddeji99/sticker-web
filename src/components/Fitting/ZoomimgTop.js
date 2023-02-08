@@ -3,7 +3,9 @@ import styled from "styled-components"
 
 
 const SM = styled.img`
-height: 40vh;
+height: 89vh;
+width: 100%;
+object-fit: contain;
 `;
 
 const ABC = styled.div`
@@ -20,12 +22,14 @@ const Zoomimg = ({image}) => {
     return (
         <ABC style={{display: "flex", justifyContent: "center"}}>
           <TransformWrapper
-            minScale={0.5}      
+            minScale={0.5}
+            maxScale={3.2}
             limitToBounds={false}
+            wheel={{step: 0.005}}      
             style={{overflow: "visible !important"}}
             >
             <TransformComponent>
-              <SM src={image} alt="" crossOrigin="use-credentials" />
+              <SM src={`${image}?${Date.now()}5`} alt="" crossOrigin="use-credentials" />
             </TransformComponent>
           </TransformWrapper>
         </ABC>

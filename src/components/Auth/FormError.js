@@ -5,10 +5,10 @@ const SFormError = styled.span`
     color:tomato;
     font-weight: 600;
     font-size: 18px;
-    margin: -7px auto 0 auto;
-    @media (pointer:coarse) {
-        font-size: 32px;
-        margin: -7px auto 23px auto;
+    margin: -7px auto 12px auto;
+    @media all and (max-width:767px) {
+        font-size: 12px;
+        margin: -7px auto 12px auto;
       }
 `;
 

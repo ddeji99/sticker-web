@@ -12,12 +12,16 @@ query seeBottomitems($cursor: Int) {
        category
        title
        price
+       laundryinfo
        image
+       mimage
        color
        size
        brand
        createAt
        updateAt
+       iscart
+       totalCarts
       }
    }
 }

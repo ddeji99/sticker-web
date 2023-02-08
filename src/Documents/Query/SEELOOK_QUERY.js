@@ -16,10 +16,13 @@ export const SEELOOK_QUERY = gql`
             id
             title
             size
+            category
+            laundryinfo
             detail
             color
             price
             image
+            mimage
             category
         }
       }

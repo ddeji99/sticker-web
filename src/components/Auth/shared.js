@@ -6,4 +6,3 @@ export const BaseBox = styled.div`
   border: 1px solid rgb(219, 219, 219);
   width: 100%;
 `;
-

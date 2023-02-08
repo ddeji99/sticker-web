@@ -16,6 +16,7 @@ query seeFeeds($cursor: Int) {
         id
         nickname
         gender
+        avatar
       }            
        Look {
         id
@@ -29,7 +30,12 @@ query seeFeeds($cursor: Int) {
             detail
             color
             price
+            category
+            laundryinfo
+            mimage
             image
+            iscart
+            totalCarts
         }
        }               
        title       
@@ -47,6 +53,10 @@ query seeFeeds($cursor: Int) {
             isMe
         }
        }
+       isLiked
+       totalLikes
+       commentNumber
+       category
        createAt     
        isMine     
       }

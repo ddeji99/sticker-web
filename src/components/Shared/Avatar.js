@@ -5,16 +5,13 @@ import styled from "styled-components";
 
 
 const Image = styled.img`
-  width: ${(props) => props.size};
-  height: ${(props) => props.size};
-  border: 1px solid #DBDBDB;
-  border-radius: 50%;
-  margin: 0 5px 0 0;
-  @media (pointer:coarse) {
-   width: 5vh;
-   height: 5vh;
-  }
-  
+  width: 36px;
+  height: 36px;
+  aspect-ratio: 1 / 1;
+  background-image: url(/* background-image.jpg */);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const Avatar = ({ size, Avatarurl }) => {

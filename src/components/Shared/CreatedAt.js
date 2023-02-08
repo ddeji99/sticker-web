@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 
 
-const Container = styled.div`
+const Container = styled.span`
   color:"#8F8F8F";
-  font-size: 14px;
-  padding: 0px 15px;
-  @media (pointer:coarse) {
-    font-size: 20px;
+  font-size: 13px;
+  padding: 2px 5px;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 10px;
   }
 `;
 

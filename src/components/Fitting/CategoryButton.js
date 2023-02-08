@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { ShowOuter, ShowTop, ShowBottom} from "../../apollo";
+import { useNavigate } from "react-router-dom";
 import { makeVar } from "@apollo/client";
 
 const shake3856 = keyframes`
@@ -46,7 +47,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const CategoryButton = styled.span`
-    width: 110px;
+    width: calc((100% - 450px) / 4);
     margin-left: 18px;
     padding: 15px 25px;
     border: unset;
@@ -147,6 +148,7 @@ const ResetIcon = styled.div`
 
 
 function Category() {
+    const navigate = useNavigate();
     return (
         <NavWrapper>
             <ButtonWrapper>
@@ -162,6 +164,7 @@ function Category() {
                 <CategoryButton onClick={ShowTop}>Top</CategoryButton>
                 <CategoryButton onClick={ShowBottom}>Phants</CategoryButton>
                 <CategoryButton onClick={ShowOuter}>Outer</CategoryButton>
+                <CategoryButton onClick={() =>{navigate(`/items`)}}>옷담으러가기</CategoryButton>
             </ButtonWrapper>
         </NavWrapper>
     );

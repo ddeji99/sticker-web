@@ -15,11 +15,15 @@ import { gql } from "@apollo/client";
             title
             price
             image
+            mimage
+            laundryinfo
             color
             size
             brand
             createAt
             updateAt
+            iscart
+            totalCarts
            }
         }
      }

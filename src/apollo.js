@@ -23,17 +23,19 @@ const Show_Bottom = "Show-bottom";
 const Show_Top = "Show-top";
 const Show_Outer = "Show-outer";
 const wear_Outer= "wear-outer";
+const wear_Bottom = "wear-bottom";
+const wear_tBottom = "wear-t-bottom";
 const VSCARD = "VSCARD";
 
 
-const httpLink = new HttpLink({ uri: "https://sticker--backend.herokuapp.com/graphql", /*redentials: 'omit',*/ credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"
+const httpLink = new HttpLink({ uri: 'https://sticker--backend.herokuapp.com/graphql', /*redentials: 'omit',*/ credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"
 });
 
 const uploadHttpLink = createUploadLink({
-  uri:"https://sticker--backend.herokuapp.com/graphql", /*credentials: 'omit',*/credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"'include'
+  uri:'https://sticker--backend.herokuapp.com/graphql', /*credentials: 'omit',*/credentials: 'include',  //'http://localhost:8000/graphql',"https://sticker--backend.herokuapp.com/graphql"'include'
  // headers: {
    //'Access-Control-Allow-Origin': "https://www.stickerdata.s3.ap-northeast-2.amazonaws.com",
-     // 'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Credentials': true,
  // }
 });
 
@@ -71,7 +73,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const uploadHttpLinks = authLink.concat(errorLink).concat(uploadHttpLink);
 
 const wsLink = new GraphQLWsLink(createClient({
-  uri:"ws://sticker--backend.herokuapp.com/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
+  uri:"ws://localhost:8000/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
   options: {
     reconnect: true,
     connectionParams: () => ({
@@ -165,12 +167,29 @@ export const disableShowOuter = () => {
 };
 
 export const wearOuterVar = makeVar(Boolean(localStorage.getItem(wear_Outer)==="enabled"));
+export const wearBottomVar = makeVar(Boolean(localStorage.getItem(wear_Bottom)==="enabled"));
+export const weartBottomVar = makeVar(Boolean(localStorage.getItem(wear_tBottom)==="enabled"));
 export const wearOuter = () => {
   wearOuterVar(true);
+  wearBottomVar(false);
+  weartBottomVar(false);
 };
 
 export const wearTop = () => {
   wearOuterVar(false);
+  wearBottomVar(false);
+  weartBottomVar(false);
+};
+
+export const wearBottom = () => {
+  wearBottomVar(true);
+  weartBottomVar(false);
+};
+
+export const weartBottom = () => {
+  weartBottomVar(true);
+  wearBottomVar(false);
+  wearOuterVar(true);
 };
 
 

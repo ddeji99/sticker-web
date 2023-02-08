@@ -4,14 +4,15 @@ import { gql } from "@apollo/client";
 
 
 export const MAKINGFEED_MUTATION = gql`
-  mutation makingFeed($Lookid: Int!, $title: String!, $caption: String!) {
-    makingFeed(Lookid: $Lookid, title: $title, caption: $caption) {
+  mutation makingFeed($Lookid: Int!, $title: String!, $caption: String!, $category: String) {
+    makingFeed(Lookid: $Lookid, title: $title, caption: $caption, category: $category) {
       ok
       message
       feed {
         id
         title
         caption
+        category
         createAt
         user {
             id
@@ -28,6 +29,7 @@ export const MAKINGFEED_MUTATION = gql`
             item {
                 id
                 image
+                category
                 detail
                 price
                 size

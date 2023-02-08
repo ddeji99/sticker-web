@@ -28,12 +28,17 @@ export const SEEPROFILE_QUERY = gql`
             totalPrice
             item {
                 id
+                category
                 title
                 size
                 detail
                 color
                 price
+                mimage
                 image
+                laundryinfo
+                iscart
+                totalCarts
             }
            }               
            title       
@@ -51,9 +56,14 @@ export const SEEPROFILE_QUERY = gql`
                 isMe
             }
            }
+           isLiked
+           totalLikes
+           commentNumber
+           category
            createAt     
            isMine     
           }
+
         Looks {
               id
               title
@@ -67,6 +77,11 @@ export const SEEPROFILE_QUERY = gql`
                   color
                   price
                   image
+                  mimage
+                  laundryinfo
+                  category
+                  iscart
+                  totalCarts
               }
         }
 

@@ -19,9 +19,8 @@ const Logoinbox = styled.img`
   width: 300px;
   padding: 3vh 0 5vh;
   object-fit: contain;
-  @media (pointer:coarse) {
-    width: 100%;
-    padding: 5vh 0 5vh 0;
+  @media all and (max-width:767px) {
+    width: 70%;
   }
 `;
 const SignUp = styled.div`
@@ -51,9 +50,9 @@ const SignUp = styled.div`
   transition: all 0.2s;
   text-shadow: 0 1px #666;
 
-  @media (pointer:coarse) {
-      padding: 10px 0 10px 0;
-      font-size:30px;
+    @media all and (max-width:767px) {
+        padding: 10px 0 10px 0;
+        font-size: 12px;
     }
   }
 
@@ -85,20 +84,15 @@ const SignUp = styled.div`
   button:active {
   transform: scale(0.95);
   }
-
-  @keyframes fly-1 {
-  from {
-    transform: translateY(0.1em);
-  }
-
-  to {
-    transform: translateY(-0.1em);
+  @media all and (max-width:767px) {
+      width: calc(100% - 60px);
   }
 `;
 
 const Notification = styled.div`
   color: #2ecc71;
 `;
+
 
 
 const Passwordinput = styled(Input)`
@@ -131,17 +125,17 @@ ${Emailinput}:valid ~ & {
   color: #1875FF;
 }
 
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-78px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Emailinput}:focus ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Emailinput}:valid ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
@@ -170,31 +164,22 @@ ${Passwordinput}:valid ~ & {
   padding: 0 .2em;
   color: #1875FF;
 }
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-78px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Passwordinput}:focus ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Passwordinput}:valid ~ & {
-    transform: translateY(-113px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
 }
-`;
-
-const modalVariants = {
-  start: { opacity: 0, scale: 1 },
-  end: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  exit: { opacity: 0, scale: 1, transition: { duration: 0.5 } },
-};
-
-const Mdiv2 = styled(motion.div)`
 `;
 
 
@@ -245,7 +230,7 @@ function Login() {
 
   
     return (
-      <Mdiv2 variants={modalVariants} initial="start" animate="end" exit="exit">
+      
       <AuthLayout>
 
       <FormBox> 
@@ -322,7 +307,7 @@ function Login() {
                    </SignUp>
                </FormBox>
       </AuthLayout>
-      </Mdiv2>
+      
       
      
     );

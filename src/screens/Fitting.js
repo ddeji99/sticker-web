@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useReactiveVar } from "@apollo/client/react";
-import { ShowTopVar, ShowBottomVar, ShowOuterVar, wearOuterVar, wearOuter, wearTop} from "../apollo"
+import { ShowTopVar, ShowBottomVar, ShowOuterVar, wearOuterVar, wearOuter, wearTop, wearBottomVar, weartBottomVar, wearBottom, weartBottom} from "../apollo"
 import { SEETOPITEMS_QUERY } from "../Documents/Query/SEETOPITEMS_QUERY";
 import { SEEBOTTOMITEMS_QUERY } from "../Documents/Query/SEEBOTTOMITEMS_QUERY";
 import { SEEOUTERITEMS_QUERY } from "../Documents/Query/SEEOUTERITEMS_QUERY";
@@ -24,6 +24,9 @@ import Header from "../components/Header";
 import useLoggedInUser from "../hooks/useLoggedInUser";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SubNavbar from "../components/SubNavbar";
+import empty from "../img/2empty.png";
+import mimage from "../img/1model.jpg";
 
 /////predeclare
 const bounce = keyframes`
@@ -394,6 +397,7 @@ border-radius: 30px;
 margin-top: 0.5vh;
 position: absolute;
 width: inherit;
+overflow: hidden;
 z-index: ${(props) => 
     props.canwearouter
     ? 3
@@ -408,10 +412,14 @@ border-radius: 30px;
 margin-top: 0.5vh;
 position: absolute;
 width: inherit;
+overflow: hidden;
 z-index: ${(props) => 
     props.canwearouter
     ? 2
+    : props.conweartbottom
+    ? 1
     : 3
+    
 };
 `;
 
@@ -419,10 +427,16 @@ z-index: ${(props) =>
 const BottomDiv = styled.div`
 border-radius: 30px;
 position: absolute;
-margin-top: -5vh;
-z-index:1;
-top: 40vh;
 width: inherit;
+overflow: hidden;
+margin-top: 0.5vh;
+z-index: ${(props) => 
+   props.canwearbottom
+   ? 4
+   : props.canweartbottom
+   ? 2
+   : 1
+}
 `;
 
 const ItemWrapper = styled.div`
@@ -626,7 +640,23 @@ border-radius: 30px;
 const TwoBoardWrapper = styled.div`
 margin-top: 12px;
 width: 100%;
+#fitting{
+  background-color: #0239ff !important;
+  &, p{
+    color: #fff !important;
+  }
+}
 `;
+
+const TempMannnequin = styled.div`
+img {
+  width: 100%;
+  height: 100%;
+  object-size: contain;
+}
+`;
+
+
 
 
 
@@ -646,6 +676,8 @@ function Fitting() {
     const ShowBottom = useReactiveVar(ShowBottomVar);
     const ShowOuter = useReactiveVar(ShowOuterVar);
     const iswearouter = useReactiveVar(wearOuterVar);
+    const iswearbottom = useReactiveVar(wearBottomVar);
+    const isweartbottom = useReactiveVar(weartBottomVar);
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setError, clearErrors, formState: { errors, isValid}, watch } = useForm({ mode: "onChange"});
     const onCompleted = (DAta) => {
@@ -663,16 +695,16 @@ function Fitting() {
         
     }
     const [ makingLook, ] = useMutation(MAKINGLOOK_MUTATION,{
-      /*  context: {
+        /*context: {
             headers: {
               'apollo-require-preflight': true,
             },
           },*/
         onCompleted,    
     });
-    let Topitem = {price:"0",image:a};
-    let Bottomitem = {price:"0", image:b};
-    let Outeritem = {price:"0", image:""};
+    let Topitem = {price:"0",image:empty};
+    let Bottomitem = {price:"0", image:empty};
+    let Outeritem = {price:"0", image:empty};
     const {data: seeTopitemsdata, fetchMore, loading} = useQuery(SEETOPITEMS_QUERY);
     const {data: seeBottomitemsdata} = useQuery(SEEBOTTOMITEMS_QUERY);
     const {data: seeOuteritemsdata} = useQuery(SEEOUTERITEMS_QUERY);
@@ -856,16 +888,27 @@ function Fitting() {
         
        // makingLook({ variables: { Topid:boxState?.Lookitems.Topitem.id, Btmid:boxState?.Lookitems.Bottomitem.id, Outerid:boxState?.Lookitems.Outeritem.id, title, totalPrice:totalprice.Lookprice, lookimg:imgurl  }});
       }
+
+      if (LoggedInUser?.nickname === undefined) {
+        navigate(`/login`, alert("로그인후 이용해주세요"));
+      }
+
+
+
+
+
     
     return (
       <TwoBoardWrapper>
-        <Header />
+        <SubNavbar />
         <DragDropContext onDragEnd={onDragEnd}>
             <div style={{display: "flex", justifyContent: "center", height: "900px"}}> 
             <LeftBoardWr>
             <ChangeButton>
             <ChangeButtonA onClick={wearTop}>상의입히기</ChangeButtonA>
             <ChangeButtonA onClick={wearOuter}>아우터입히기</ChangeButtonA>
+            <ChangeButtonA onClick={wearBottom}>바지입히기</ChangeButtonA>
+            <ChangeButtonA onClick={weartBottom}>상의넣어입기</ChangeButtonA>
             </ChangeButton>
                 <LeftBoard id="cap">
                 <Outerdiv canwearouter={iswearouter}>  
@@ -882,7 +925,7 @@ function Fitting() {
                                    style={boxState?.Lookitems?.Outeritem.id === 1 ? {display: "none"} : null}
                                  >
                                     <span style={{display: "none"}} {...provided.dragHandleProps} >drag</span>
-                                    <ZoomimgOuter image={boxState?.Lookitems?.Outeritem.image}/>
+                                    <ZoomimgOuter image={boxState?.Lookitems?.Outeritem?.image}/>
                                     <InfoWrapper style={{display: "none"}} isDragging={snapshot.isDragging}  >
                                     <Info>{boxState?.Lookitems?.Outeritem.category}<br/>{boxState?.Lookitems?.Outeritem.price}<br/>{boxState?.Lookitems?.Outeritem.brand} </Info>
                                     </InfoWrapper>
@@ -895,7 +938,7 @@ function Fitting() {
                     )}
                  </Droppable>
                  </Outerdiv> 
-                 <Topdiv  canwearouter={iswearouter}>
+                 <Topdiv  canwearouter={iswearouter} canweartbottom={isweartbottom}>
                  <Droppable type="TOP"  droppableId={Object.keys(boxState?.Lookitems)[0]}>
                     {(provided, snapshot) => (
                         <Area id="b" ref={provided.innerRef} {...provided.droppableProps}>
@@ -909,7 +952,7 @@ function Fitting() {
                                    style={boxState?.Lookitems?.Topitem.id === 1 ? {display: "none"} : null}
                                  >
                                     <span style={{display: "none"}} {...provided.dragHandleProps} >drag</span>
-                                    <ZoomimgTop image={boxState?.Lookitems?.Topitem.image}/>
+                                    <ZoomimgTop image={boxState?.Lookitems?.Topitem?.image}/>
                                     <InfoWrapper style={{display: "none"}} isDragging={snapshot.isDragging}  >
                                     <Info>{boxState?.Lookitems?.Topitem.category}<br/>{boxState?.Lookitems?.Topitem.price}<br/>{boxState?.Lookitems?.Topitem.brand} </Info>
                                     </InfoWrapper>
@@ -925,7 +968,7 @@ function Fitting() {
                     )}
                  </Droppable>
                  </Topdiv>
-                 <BottomDiv>
+                 <BottomDiv canwearbottom={iswearbottom} canweartbottom={isweartbottom}>
                  <Droppable type="BOTTOM" droppableId={Object.keys(boxState.Lookitems)[1]}>
                     {(provided, snapshot) => (
                         <Area id="c" ref={provided.innerRef} {...provided.droppableProps}>
@@ -939,7 +982,7 @@ function Fitting() {
                                    style={boxState?.Lookitems?.Bottomitem.id === 1 ? {display: "none"} : null}
                                  >
                                     <span style={{display: "none"}} {...provided.dragHandleProps} >drag</span>
-                                    <ZoomimgBottom image={boxState?.Lookitems?.Bottomitem.image} style={{height: "47px"}}/>
+                                    <ZoomimgBottom image={boxState?.Lookitems?.Bottomitem?.image} style={{height: "47px"}}/>
                                     <InfoWrapper style={{display: "none"}} isDragging={snapshot.isDragging}  >
                                     <Info>{boxState?.Lookitems?.Bottomitem.category}<br/>{boxState?.Lookitems?.Bottomitem.price}<br/>{boxState?.Lookitems?.Bottomitem.brand} </Info>
                                     </InfoWrapper>
@@ -955,6 +998,9 @@ function Fitting() {
                     )}
                  </Droppable>
                  </BottomDiv>
+                 <TempMannnequin>
+                  <img src={mimage} />
+                 </TempMannnequin>
 
                 </LeftBoard>
                 </LeftBoardWr>

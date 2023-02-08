@@ -28,12 +28,13 @@ const Button = styled.input`
         transform: translateY(-1px);
         }
 
-        @media (pointer:coarse) {
+        @media all and (max-width:767px) {
+          height: 45px;
           background-color: #1875FF;
           box-shadow: none;
-          font-size: 50px;
-          height: 85px;
+          font-size: 16px;
           border-radius: 85px;
+          margin-top: 25px;
         }
 `;
 

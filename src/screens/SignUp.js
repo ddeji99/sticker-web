@@ -17,20 +17,15 @@ import { motion } from "framer-motion";
 
 
 
-const modalVariants = {
-  start: { opacity: 0, scale: 1 },
-  end: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  exit: { opacity: 0, scale: 1, transition: { duration: 0.5 } },
-};
 
 const Logoinbox = styled.img`
-width: 300px;
-padding: 3vh 0 5vh;
-object-fit: contain;
-@media (pointer:coarse) {
-  width: 100%;
-  padding: 5vh 0 5vh 0;
-}
+  width: 300px;
+  padding: 3vh 0 5vh;
+  object-fit: contain;
+  @media all and (max-width:767px) {
+    width: 70%;
+    padding: 3vh 0 5vh;
+  }
 `;
 
 
@@ -46,8 +41,9 @@ const SignUp2 = styled.div`
     align-items: center;
   }
   span {
-    @media (pointer:coarse) {
-      font-size: 38px;
+    @media all and (max-width:767px) {
+      font-size: 18px;
+      margin-bottom: 9px;
     }
   }
   button {
@@ -57,7 +53,7 @@ const SignUp2 = styled.div`
   background: #000;
   color: white;
   margin: 0 0.5px 0 0.5px;
-  margin: 0 0.5px 0 0.5px;
+  padding: 0.7em 1em;
   padding-left: 0.9em;
   display: flex;
   align-items: center;
@@ -66,10 +62,11 @@ const SignUp2 = styled.div`
   overflow: hidden;
   transition: all 0.2s;
   text-shadow: 0 1px #666;
-  @media (pointer:coarse) {
-      letter-spacing: 3px;
-      font-size:40px;
-      padding: 10px 0 10px 0;
+    @media all and (max-width:767px) {
+        width: 100%;
+        padding: 10px 0 10px 0;
+        font-size: 12px;
+        padding: 5px;
     }
   }
 
@@ -77,9 +74,9 @@ const SignUp2 = styled.div`
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
-  @media (pointer:coarse) {
+    @media all and (max-width:767px) {
       letter-spacing: 5px;
-      font-size:40px;
+      font-size: 18px;
     }
   }
 
@@ -106,38 +103,34 @@ const SignUp2 = styled.div`
   transform: scale(0.95);
   }
 
-  @keyframes fly-1 {
-  from {
-    transform: translateY(0.1em);
-  }
-
-  to {
-    transform: translateY(-0.1em);
+  @media all and (max-width:767px) {
+    width: calc(100% - 60px);
   }
 `;
 
-const SelectG = styled.select`
-width: 48%;
-height: 51px;
-margin: -88px 0 27px auto;
-padding: 0 40.5px 0 41.5px;
-border-radius: 300px;
-&:focus {
-  outline: none;
-  border: 1.5px solid #1875FF;
-  background-color: #fff !important;
-}
-&:valid {
-  outline: none;
-  border: 1.5px solid #1875FF;
-  background-color: #fff !important;
-}
 
-@media (pointer:coarse) {
-  font-size: 2em;
-  height: 73px;
-  margin: -127px 0 27px auto;
-}
+const SelectG = styled.select`
+  width: 48%;
+  height: 51px;
+  margin: -88px 0 27px auto;
+  padding: 0 40.5px 0 41.5px;
+  border-radius: 300px;
+  &:focus {
+    outline: none;
+    border: 1.5px solid #1875FF;
+    background-color: #fff !important;
+  }
+  &:valid {
+    outline: none;
+    border: 1.5px solid #1875FF;
+    background-color: #fff !important;
+  }
+
+  @media all and (max-width:767px) {
+    font-size: 14px;
+    height: 44px;
+    margin: -72px 0 25px auto;
+  }
 `;
 
 const Emailinput = styled(Input)`
@@ -186,17 +179,17 @@ ${Emailinput}:valid ~ & {
   color: #1875FF;
 }
 
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-75px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Emailinput}:focus ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Emailinput}:valid ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
@@ -226,17 +219,17 @@ ${Nicknameinput}:valid ~ & {
   color: #1875FF;
 }
 
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-75px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Nicknameinput}:focus ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Nicknameinput}:valid ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
@@ -266,17 +259,17 @@ ${Ageinput}:valid ~ & {
   color: #1875FF;
 }
 
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-75px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Ageinput}:focus ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Ageinput}:valid ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
@@ -305,17 +298,17 @@ ${Passwordinput}:valid ~ & {
   padding: 0 .2em;
   color: #1875FF;
 }
-@media (pointer:coarse) {
-  font-size: 30px;
-  transform: translateY(-75px);
+@media all and (max-width:767px) {
+  font-size: 18px;
+  transform: translateY(-42px);
   ${Passwordinput}:focus ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
   }
   ${Passwordinput}:valid ~ & {
-    transform: translateY(-105px) translateX(34px) scale(1);
+    transform: translateY(-63px) translateX(34px) scale(1);
     background-color: #fff;
     padding: 0 .2em;
     color: #1875FF;
@@ -324,15 +317,18 @@ ${Passwordinput}:valid ~ & {
 `;
 
 const SignUPPolicy = styled.div`    
-display: flex;
-align-items: center;
-margin-bottom: 10px;
-@media (pointer:coarse) {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
   a{
-    font-size: 25px;
+    underline: 1px solid #000;
   }
-}
+  @media all and (max-width:767px) {
+    margin-bottom: 5px;
+    a{
+      font-size: 14px;
+    }
+  }
 
 `;
 
@@ -346,11 +342,12 @@ const CheckBoxR = styled.label`
     --color-grey: #cccccc;
     --color-green: #4296f4;
     cursor: pointer;
-    @media (pointer:coarse) {
-      --button-width: 5.5em;
-      --button-height: 3em;
-      --toggle-diameter: 2.25em;
-      --toggle-wider: 7em;
+    @media all and (max-width:767px) {
+      --button-width: 48px;
+      --button-height: 28px;
+      --toggle-diameter: 20px;
+      --toggle-wider: 48px;
+        margin-right: 10px;
     }
 
 `;
@@ -366,7 +363,6 @@ const CheckBoxBody = styled(Input)`
     &:active{
         width: var(--toggle-wider);
         transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
-
     }
 `;
 
@@ -410,8 +406,7 @@ const CSlider = styled.span`
 
 
 
-const Mdiv = styled(motion.div)`
-`;
+
 
 const SIGNUP_MUTATION = gql`
 mutation CreateAccount(
@@ -463,7 +458,7 @@ function SignUp() {
   };
  
     return (
-       <Mdiv variants={modalVariants} initial="start" animate="end" exit="exit">
+       
          <AuthLayout>
                  <FormBox>
                      <Logoinbox src={Logo}/>
@@ -630,7 +625,7 @@ function SignUp() {
                    </SignUp2>
                  </FormBox>
         </AuthLayout>
-        </Mdiv>
+        
           
       );
 }

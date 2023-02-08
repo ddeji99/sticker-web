@@ -19,10 +19,7 @@ const Aasd = styled.div`
 const Zoomimg = ({image}) => {
     return (
         <ABC style={{display: "flex", justifyContent: "center"}}>
-          
-            
-              <SM src={image} alt="" crossOrigin="use-credentials" />
-          
+           <SM src={image + "?adfafa"} alt="" crossOrigin="use-credentials" />
         </ABC>
     )
 }

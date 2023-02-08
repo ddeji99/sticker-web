@@ -14,11 +14,15 @@ export const SEETOPITEMS_QUERY = gql`
             title
             price
             image
+            mimage
+            laundryinfo
             color
             size
             brand
             createAt
             updateAt
+            iscart
+            totalCarts
            }
         }
      }
