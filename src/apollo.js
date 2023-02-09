@@ -73,7 +73,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const uploadHttpLinks = authLink.concat(errorLink).concat(uploadHttpLink);
 
 const wsLink = new GraphQLWsLink(createClient({
-  uri:"ws://localhost:8000/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
+  uri:"ws://sticker--backend.herokuapp.com/graphql",     //"ws://localhost:8000/graphql","ws://sticker--backend.herokuapp.com/graphql"
   options: {
     reconnect: true,
     connectionParams: () => ({
