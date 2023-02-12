@@ -327,7 +327,7 @@ function Profile() {
 
    useEffect(() => {
     if (nickname === "undefined") {
-      navigate("/",alert("로그인 해주세요"));
+      navigate("/login",alert("로그인 해주세요"));
     }
   });
   if(loading) return <Loader />

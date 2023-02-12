@@ -190,6 +190,10 @@ const LoginNav = styled.nav`
       height: 60px;
     }
 
+    img {
+      display: none;
+    }
+
   }
 `;
 
