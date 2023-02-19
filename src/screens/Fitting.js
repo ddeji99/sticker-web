@@ -397,6 +397,7 @@ border-radius: 30px;
 margin-top: 0.5vh;
 position: absolute;
 width: inherit;
+object-fit: contain;
 overflow: hidden;
 z-index: ${(props) => 
     props.canwearouter
@@ -412,6 +413,7 @@ border-radius: 30px;
 margin-top: 0.5vh;
 position: absolute;
 width: inherit;
+object-fit: contain;
 overflow: hidden;
 z-index: ${(props) => 
     props.canwearouter
@@ -428,6 +430,7 @@ const BottomDiv = styled.div`
 border-radius: 30px;
 position: absolute;
 width: inherit;
+object-fit: contain;
 overflow: hidden;
 margin-top: 0.5vh;
 z-index: ${(props) => 
@@ -862,13 +865,19 @@ function Fitting() {
         Border.style.backgroundColor = "none";
         a.style.border = "none";
         b.style.border = "none";
-        c.style.border = "none";       
+        c.style.border = "none";
         html2canvas(document.getElementById("cap"),{ 
             logging: true,
             useCORS: true,
             useOverflow: true,
             allowTaint: true,
             scale: 4,
+            onclone: (doc) => {
+              const images = doc.querySelectorAll("img");
+              images.forEach((image) => {
+                image.style.objectFit = "contain";
+              });
+            }
             }).then((canvas) =>{ 
             img = canvas.toDataURL("image/png", 1.0); 
             const blob = dataURLtoBlob(img);

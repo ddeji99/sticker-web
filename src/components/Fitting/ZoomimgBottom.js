@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 
 const SM = styled.img`
-  height: 89vh;
+  
   width: 100%;
 object-fit: contain;
 `;
@@ -11,6 +11,10 @@ object-fit: contain;
 const ABC = styled.div`
   width: auto !important;
   overflow: visible !important;
+  & > div{
+    height: 89vh;
+
+  }
 `;
 
 const Aasd = styled.div`
@@ -29,7 +33,7 @@ const Zoomimg = ({image}) => {
             style={{overflow: "visible !important"}}
             >
             <TransformComponent>
-              <SM src={`${image}?${Date.now()}4`} alt="" crossOrigin="use-credentials" />
+              <SM id="b" src={`${image}?${Date.now()}4`} alt="" crossOrigin="use-credentials" />
             </TransformComponent>
           </TransformWrapper>
         </ABC>
