@@ -23,7 +23,7 @@ import ItemDetail from "./screens/ItemDetail"
 import ItemMain from "./screens/ItemMain";
 import FeedMain from "./screens/FeedMain";
 import Additem from "./screens/Additem";
-
+import Check from "./screens/Check";
 
 
 
@@ -44,7 +44,7 @@ function App() {
       </Route>
       <Route path="/perchase/:id" element={<Perchase />} />
       <Route path="/findpassword" element={<Findpassword />} />
-      <Route path="/" element={<Home />}>
+      <Route path="/" element={<Check />}>
         
         <Route path="look/:id" element={<Home />} />
       </Route>
