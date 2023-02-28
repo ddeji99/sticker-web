@@ -44,7 +44,7 @@ function App() {
       </Route>
       <Route path="/perchase/:id" element={<Perchase />} />
       <Route path="/findpassword" element={<Findpassword />} />
-      <Route path="/" element={<Check />}>
+      <Route path="/" element={<Home />}>
         
         <Route path="look/:id" element={<Home />} />
       </Route>
